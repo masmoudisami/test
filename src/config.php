@@ -2,7 +2,7 @@
 define('DB_HOST', 'db');
 define('DB_NAME', 'mechanic_db');
 define('DB_USER', 'mechanic_user');
-define('DB_PASS', '131301');
+define('DB_PASS', 'password');
 define('APP_URL', 'http://localhost:8080');
 define('CURRENCY', 'TND');
 date_default_timezone_set('Africa/Tunis');

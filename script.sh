@@ -104,14 +104,14 @@ fi
 # ============================================================
 # 3. Clonage du dépôt GitHub
 # ============================================================
-APP_DIR="$HOME/garage"
+APP_DIR="$HOME/test"
 
 if [ -d "$APP_DIR/.git" ]; then
     info "Le dépôt existe déjà — mise à jour (git pull)..."
     git -C "$APP_DIR" pull
 else
-    info "Clonage du dépôt https://github.com/masmoudisami/garage.git ..."
-    git clone https://github.com/masmoudisami/garage.git "$APP_DIR"
+    info "Clonage du dépôt https://github.com/masmoudisami/test.git ..."
+    git clone https://github.com/masmoudisami/test.git "$APP_DIR"
 fi
 success "Dépôt disponible dans $APP_DIR."
 

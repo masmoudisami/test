@@ -46,11 +46,14 @@ docker exec mysql_db mysqldump -u root -p131301 mechanic_db > backup_mechanic_db
 
 Pour installer depuis script.sh
 
-curl -O https://github.com/masmoudisami/test/blob/main/script.sh
+curl -O https://raw.githubusercontent.com/masmoudisami/test/refs/heads/main/script.sh
+
+ou bien : wget https://raw.githubusercontent.com/masmoudisami/test/refs/heads/main/script.sh
 
 chmod +x script.sh
 
 ./script.sh
+
 
 
 

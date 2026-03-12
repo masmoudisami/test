@@ -1,8 +1,8 @@
 <?php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mechanic_db');
-define('DB_USER', 'root');
-define('DB_PASS', '131301');
+define('DB_USER', 'sami');
+define('DB_PASS', 'Sm/131301');
 define('APP_URL', 'http://localhost');
 define('CURRENCY', 'TND');
 date_default_timezone_set('Africa/Tunis');

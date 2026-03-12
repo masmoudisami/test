@@ -7,7 +7,7 @@ Sur un nouveau serveur :
 
 git clone https://github.com/masmoudisami/test.git
 
-cd mon-app
+cd test
 
 docker compose up -d --build
 
@@ -53,6 +53,7 @@ ou bien : wget https://raw.githubusercontent.com/masmoudisami/test/refs/heads/ma
 chmod +x script.sh
 
 ./script.sh
+
 
 
 

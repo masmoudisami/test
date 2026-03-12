@@ -1,4 +1,4 @@
-# Garage
+# Garage-v3
 
 
 8️⃣ Déploiement sur un nouveau serveur
@@ -41,6 +41,7 @@ Application accessiblr via : http://localhost:8080
 Backup manuel :
 
 docker exec mysql_db mysqldump -u sami -pSm/131301 mechanic_db > backup_mechanic_db.sql
+
 
 
 

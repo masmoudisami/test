@@ -5,7 +5,7 @@
 
 Sur un nouveau serveur :
 
-git clone https://github.com/masmoudisami/Garage.git
+git clone https://github.com/masmoudisami/test.git
 
 cd mon-app
 
@@ -53,6 +53,7 @@ ou bien : wget https://raw.githubusercontent.com/masmoudisami/test/refs/heads/ma
 chmod +x script.sh
 
 ./script.sh
+
 
 
 

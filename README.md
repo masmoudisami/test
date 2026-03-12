@@ -6,7 +6,7 @@
 Sur un nouveau serveur :
 creer un utilisateur "sami"
 
-git clone https://github.com/masmoudisami/test.git
+git clone https://github.com/masmoudisami/garage-v3.git
 
 cd test
 
@@ -41,6 +41,7 @@ Application accessiblr via : http://localhost:8080
 Backup manuel :
 
 docker exec mysql_db mysqldump -u root -p131301 mechanic_db > backup_mechanic_db.sql
+
 
 
 

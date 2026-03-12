@@ -13,7 +13,7 @@ services:
     environment:
       DB_HOST: db
       DB_NAME: mechanic_db
-      DB_USER: mechanic_user
+      DB_USER: sami
       DB_PASSWORD: Sm/131301
       APP_URL: http://localhost:8080
     volumes:
@@ -27,7 +27,7 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: mechanic_db
-      MYSQL_USER: mechanic_user
+      MYSQL_USER: sami
       MYSQL_PASSWORD: Sm/131301
       MYSQL_ROOT_PASSWORD: Sm/131301
     ports:
@@ -58,5 +58,6 @@ volumes:
 networks:
 
   app_network:
+
 
 

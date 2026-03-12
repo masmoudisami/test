@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   web:
@@ -45,8 +43,8 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
       - db
     networks:

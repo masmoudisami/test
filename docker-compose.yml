@@ -44,7 +44,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     depends_on:
       - db
     networks:
@@ -55,3 +55,4 @@ volumes:
 
 networks:
   app_network:
+

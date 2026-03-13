@@ -6,6 +6,22 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; color: #333; }
         .container { max-width: 1200px; margin: 0 auto; background: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        
+        /* Bannière */
+        .banner-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .banner-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: contain;
+        }
+        
         h1, h2 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
         .actions { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
         .btn { display: inline-block; padding: 10px 15px; background: #3498db; color: #fff; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; }
@@ -25,15 +41,32 @@
         .text-right { text-align: right; }
         .config-info { background: #fff3cd; padding: 10px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #ffc107; }
         .export-info { background: #d5f5e3; padding: 10px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #2ecc71; display: <?php echo !empty($filters['search']) || !empty($filters['date_start']) || !empty($filters['date_end']) || !empty($filters['type']) ? 'block' : 'none'; ?>; }
+        
+        /* Responsive pour la bannière */
+        @media screen and (max-width: 768px) {
+            .banner-container {
+                padding: 15px 0;
+                margin-bottom: 20px;
+            }
+            
+            .banner-container img {
+                max-height: 100px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Bannière centrée -->
+        <div class="banner-container">
+            <img src="assets/banniere.png" alt="Bannière Garage Auto Service">
+        </div>
+        
         <h1>Tableau de Bord</h1>
         
         <div class="config-info">
             <strong>📍 <?php echo GARAGE_NAME; ?></strong> - <?php echo GARAGE_ADDRESS; ?> - Tél: <?php echo GARAGE_PHONE; ?>
-            
+            <span style="float:right;"><a href="#config-help" class="btn btn-info" style="padding:5px 10px; font-size:0.9em;">Modifier infos</a></span>
         </div>
         
         <div class="actions">

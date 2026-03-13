@@ -1,5 +1,5 @@
 <?php
-define('DB_HOST', 'db');
+define('DB_HOST', 'db'); // 'db' à modifier par 'localhost' en version web
 define('DB_NAME', 'mechanic_db');
 define('DB_USER', 'sami');
 define('DB_PASS', 'Sm/131301');

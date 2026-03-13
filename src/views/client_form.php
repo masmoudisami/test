@@ -4,12 +4,51 @@
     <meta charset="UTF-8">
     <title>Gestion Clients</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
-        .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1, h2 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        * {
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: #f4f4f4;
+            overflow-x: hidden;
+        }
+        
+        .container { 
+            max-width: 100%;
+            margin: 0 auto; 
+            background: #fff; 
+            padding: 20px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: hidden;
+        }
+        
+        h1, h2 { 
+            color: #2c3e50; 
+            border-bottom: 2px solid #ecf0f1; 
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        .form-group { 
+            margin-bottom: 15px; 
+        }
+        
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+        }
+        
+        input { 
+            width: 100%; 
+            padding: 8px; 
+            box-sizing: border-box; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+        }
         
         .btn { 
             padding: 8px 12px; 
@@ -22,6 +61,7 @@
             border-radius: 4px;
             font-size: 13px;
             transition: background 0.3s;
+            white-space: nowrap;
         }
         .btn:hover { opacity: 0.9; }
         .btn-danger { background: #e74c3c; }
@@ -73,14 +113,59 @@
             color: #2c3e50;
         }
         
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: #2c3e50; color: #fff; }
-        tr:hover { background: #f9f9f9; }
+        /* Tableau - Correction débordement */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 20px;
+        }
         
-        .form-section { display: flex; gap: 30px; flex-wrap: wrap; }
-        .form-panel { flex: 1; min-width: 350px; }
-        .list-panel { flex: 1; min-width: 450px; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 800px;
+        }
+        
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        th { 
+            background: #2c3e50; 
+            color: #fff;
+            white-space: nowrap;
+        }
+        
+        tr:hover { 
+            background: #f9f9f9; 
+        }
+        
+        /* Colonnes avec largeurs fixes */
+        th:nth-child(1), td:nth-child(1) { width: 20%; min-width: 150px; }
+        th:nth-child(2), td:nth-child(2) { width: 20%; min-width: 150px; }
+        th:nth-child(3), td:nth-child(3) { width: 12%; min-width: 100px; }
+        th:nth-child(4), td:nth-child(4) { width: 13%; min-width: 100px; }
+        th:nth-child(5), td:nth-child(5) { width: 15%; min-width: 180px; }
+        
+        .form-section { 
+            display: flex; 
+            gap: 30px; 
+            flex-wrap: wrap; 
+        }
+        .form-panel { 
+            flex: 1; 
+            min-width: 300px; 
+        }
+        .list-panel { 
+            flex: 1; 
+            min-width: 400px;
+            overflow-x: auto;
+        }
         
         .error-box {
             background: #f8d7da;
@@ -89,10 +174,19 @@
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
+            word-wrap: break-word;
         }
-        .error-box h3 { margin: 0 0 10px 0; color: #721c24; }
-        .error-box ul { margin: 10px 0; padding-left: 20px; }
-        .error-box li { margin: 5px 0; }
+        .error-box h3 { 
+            margin: 0 0 10px 0; 
+            color: #721c24; 
+        }
+        .error-box ul { 
+            margin: 10px 0; 
+            padding-left: 20px; 
+        }
+        .error-box li { 
+            margin: 5px 0; 
+        }
         .info-box {
             background: #d1ecf1;
             border: 1px solid #bee5eb;
@@ -109,9 +203,9 @@
             flex-wrap: wrap;
         }
         .table-actions .btn {
-            padding: 5px 10px;
+            padding: 5px 8px;
             font-size: 12px;
-            min-width: 35px;
+            min-width: 32px;
             text-align: center;
         }
         .action-group {
@@ -131,15 +225,21 @@
             border-radius: 3px;
             font-weight: bold;
             font-size: 11px;
+            white-space: nowrap;
         }
         .stat-badge.warning { background: #f39c12; color: #fff; }
         .stat-badge.success { background: #2ecc71; color: #fff; }
-        .stat-total { color: #777; font-size: 10px; }
+        .stat-total { 
+            color: #777; 
+            font-size: 10px;
+            white-space: nowrap;
+        }
         
         .form-actions {
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         .form-actions .btn {
             padding: 10px 20px;
@@ -147,6 +247,59 @@
         
         .highlight {
             background: #fff3cd;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .form-section {
+                flex-direction: column;
+            }
+            
+            .form-panel, .list-panel {
+                min-width: 100%;
+            }
+            
+            .main-actions {
+                flex-direction: column;
+            }
+            
+            .main-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                min-width: 100%;
+            }
+            
+            .search-buttons {
+                width: 100%;
+            }
+            
+            .search-buttons .btn {
+                flex: 1;
+            }
+            
+            table {
+                min-width: 600px;
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -167,7 +320,7 @@
                 <input type="hidden" name="route" value="clients_create">
                 <div class="search-input">
                     <label for="search">Nom, Modèle de voiture ou Téléphone</label>
-                    <input type="text" id="search" name="search" placeholder="Ex: Mohamed, Clio, 98..." value="<?php echo htmlspecialchars($search); ?>" autofocus>
+                    <input type="text" id="search" name="search" placeholder="Ex: Mohamed, Clio, 98..." value="<?php echo htmlspecialchars($search ?? ''); ?>" autofocus>
                 </div>
                 <div class="search-buttons">
                     <button type="submit" class="btn btn-info">🔍 Rechercher</button>
@@ -175,7 +328,9 @@
                 </div>
             </form>
             <div class="search-info">
-                <?php if(!empty($search)): ?>
+                <?php 
+                $search = $search ?? '';
+                if(!empty($search)): ?>
                     <strong><?php echo count($clients); ?></strong> client(s) trouvé(s) pour "<strong><?php echo htmlspecialchars($search); ?></strong>"
                     <span style="float: right;">
                         <a href="index.php?route=clients_create" style="color: #e74c3c; text-decoration: underline;">Voir tous les clients</a>
@@ -247,76 +402,79 @@
             
             <div class="list-panel">
                 <h2>📂 Liste des Clients <?php if(!empty($search)): ?> <span style="font-size: 14px; color: #666;">(Filtrée)</span><?php endif; ?></h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 25%;">Nom</th>
-                            <th style="width: 20%;">Modèle</th>
-                            <th style="width: 15%;">Téléphone</th>
-                            <th style="width: 15%;">Activité</th>
-                            <th style="width: 25%;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if(empty($clients)): ?>
-                        <tr>
-                            <td colspan="5" style="text-align:center; padding: 30px; color: #777;">
-                                📭 Aucun client trouvé pour cette recherche
-                                <br>
-                                <a href="index.php?route=clients_create" class="btn btn-secondary" style="margin-top: 10px;">Voir tous les clients</a>
-                            </td>
-                        </tr>
-                        <?php else: ?>
-                            <?php foreach ($clients as $c): 
-                                $invoiceCount = $this->model->getInvoiceCount($c['id']);
-                                $totalSpent = $this->model->getTotalSpent($c['id']);
-                                $highlight = (!empty($search) && (stripos($c['name'], $search) !== false || stripos($c['car_model'] ?? '', $search) !== false || stripos($c['phone'] ?? '', $search) !== false)) ? ' class="highlight"' : '';
-                            ?>
-                            <tr<?php echo $highlight; ?>>
-                                <td><strong><?php echo htmlspecialchars($c['name']); ?></strong></td>
-                                <td><?php echo htmlspecialchars($c['car_model'] ?? '—'); ?></td>
-                                <td><?php echo htmlspecialchars($c['phone'] ?? '—'); ?></td>
-                                <td>
-                                    <div class="stats-mini">
-                                        <?php if($invoiceCount > 0): ?>
-                                            <span class="stat-badge warning">📄 <?php echo $invoiceCount; ?></span>
-                                            <span class="stat-total"><?php echo number_format($totalSpent, 0, ',', ' '); ?> TND</span>
-                                        <?php else: ?>
-                                            <span class="stat-badge success">✓ Nouveau</span>
-                                        <?php endif; ?>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="table-actions">
-                                        <div class="action-group">
-                                            <a href="index.php?route=clients_edit&id=<?php echo $c['id']; ?>" 
-                                               class="btn btn-warning" 
-                                               title="Modifier">✏️</a>
-                                            <a href="index.php?route=client_history&client_id=<?php echo $c['id']; ?>" 
-                                               class="btn btn-info" 
-                                               title="Voir Historique">👁️</a>
-                                        </div>
-                                        <div class="action-group">
-                                            <a href="index.php?route=invoices_create&client_id=<?php echo $c['id']; ?>" 
-                                               class="btn btn-success" 
-                                               title="Nouvelle Facture">📄</a>
-                                            <a href="index.php?route=clients_delete&id=<?php echo $c['id']; ?>" 
-                                               class="btn btn-danger" 
-                                               title="Supprimer"
-                                               <?php if($invoiceCount > 0): ?>
-                                                   onclick="return confirm('⚠️ Ce client a <?php echo $invoiceCount; ?> facture(s).\n\nÊtes-vous sûr de vouloir le supprimer ?')"
-                                               <?php else: ?>
-                                                   onclick="return confirm('Supprimer ce client ?')"
-                                               <?php endif; ?>
-                                            >🗑️</a>
-                                        </div>
-                                    </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Modèle</th>
+                                <th>Téléphone</th>
+                                <th>Activité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(empty($clients)): ?>
+                            <tr>
+                                <td colspan="5" style="text-align:center; padding: 30px; color: #777;">
+                                    📭 Aucun client trouvé pour cette recherche
+                                    <br>
+                                    <a href="index.php?route=clients_create" class="btn btn-secondary" style="margin-top: 10px;">Voir tous les clients</a>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
+                            <?php else: ?>
+                                <?php foreach ($clients as $c): 
+                                    $invoiceCount = $this->model->getInvoiceCount($c['id']);
+                                    $totalSpent = $this->model->getTotalSpent($c['id']);
+                                    $highlight = (!empty($search) && (stripos($c['name'], $search) !== false || stripos($c['car_model'] ?? '', $search) !== false || stripos($c['phone'] ?? '', $search) !== false)) ? ' class="highlight"' : '';
+                                ?>
+                                <tr<?php echo $highlight; ?>>
+                                    <td><strong><?php echo htmlspecialchars($c['name']); ?></strong></td>
+                                    <td><?php echo htmlspecialchars($c['car_model'] ?? '—'); ?></td>
+                                    <td><?php echo htmlspecialchars($c['phone'] ?? '—'); ?></td>
+                                    <td>
+                                        <div class="stats-mini">
+                                            <?php if($invoiceCount > 0): ?>
+                                                <span class="stat-badge warning">📄 <?php echo $invoiceCount; ?></span>
+                                                <span class="stat-total"><?php echo number_format($totalSpent, 0, ',', ' '); ?> TND</span>
+                                            <?php else: ?>
+                                                <span class="stat-badge success">✓ Nouveau</span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <div class="action-group">
+                                                <a href="index.php?route=clients_edit&id=<?php echo $c['id']; ?>" 
+                                                   class="btn btn-warning" 
+                                                   title="Modifier">✏️</a>
+                                                <a href="index.php?route=client_history&client_id=<?php echo $c['id']; ?>" 
+                                                   class="btn btn-info" 
+                                                   title="Voir Historique">👁️</a>
+                                            </div>
+                                            <div class="action-group">
+                                                <a href="index.php?route=invoices_create&client_id=<?php echo $c['id']; ?>" 
+                                                   class="btn btn-success" 
+                                                   title="Nouvelle Facture">📄</a>
+                                                <a href="index.php?route=clients_delete&id=<?php echo $c['id']; ?>" 
+                                                   class="btn btn-danger" 
+                                                   title="Supprimer"
+                                                   <?php if($invoiceCount > 0): ?>
+                                                       onclick="return confirm('⚠️ Ce client a <?php echo $invoiceCount; ?> facture(s).\n\nÊtes-vous sûr de vouloir le supprimer ?')"
+                                                   <?php else: ?>
+                                                       onclick="return confirm('Supprimer ce client ?')"
+                                                   <?php endif; ?>
+                                                >🗑️</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
